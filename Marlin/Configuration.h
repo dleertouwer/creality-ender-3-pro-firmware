@@ -22,7 +22,6 @@
 #pragma once
 
 #define CONFIG_EXAMPLES_DIR "Creality/Ender-3 Pro/CrealityV422"
-#define HAS_PIN_27_BOARD
 
 /**
  * Configuration.h
@@ -1179,7 +1178,7 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 500, 500, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 500, 500, 20, 25 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1338,6 +1337,11 @@
 #define BLTOUCH
 
 /**
+ * The BLTouch probe is connected to a pin 27 adapter board (and Z-min pin).
+ */
+#define HAS_PIN_27_BOARD
+
+/**
  * MagLev V4 probe by MDD
  *
  * This probe is deployed and activated by powering a built-in electromagnet.
@@ -1448,6 +1452,8 @@
 #endif // Z_PROBE_ALLEN_KEY
 
 /**
+ * FIXME: Set exact offsets for Creality kit mount
+ * 
  * Nozzle-to-Probe offsets { X, Y, Z }
  *
  * X and Y offset
@@ -1498,7 +1504,7 @@
 #define XY_PROBE_FEEDRATE (50*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
-#define Z_PROBE_FEEDRATE_FAST (4*60)
+#define Z_PROBE_FEEDRATE_FAST (10*60)
 
 // Feedrate (mm/min) for the "accurate" probe of each point
 #define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
@@ -1958,7 +1964,7 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 3
+  #define GRID_MAX_POINTS_X 5
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -2103,7 +2109,7 @@
 #endif
 
 // Homing speeds (linear=mm/min, rotational=°/min)
-#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (4*60) }
+#define HOMING_FEEDRATE_MM_M { (150*60), (150*60), (10*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS

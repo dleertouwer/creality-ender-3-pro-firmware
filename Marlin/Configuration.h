@@ -2117,6 +2117,8 @@
 // @section calibrate
 
 /**
+ * FIXME: Determine skew
+ * 
  * Bed Skew Compensation
  *
  * This feature corrects for misalignment in the XYZ axes.
@@ -2193,7 +2195,7 @@
 #define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
   #define EEPROM_AUTO_INIT    // Init EEPROM automatically on any errors.
-  //#define EEPROM_INIT_NOW   // Init EEPROM on first boot after a new build.
+  #define EEPROM_INIT_NOW     // Init EEPROM on first boot after a new build.
 #endif
 
 // @section host
